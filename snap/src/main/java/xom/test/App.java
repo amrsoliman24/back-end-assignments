@@ -1,35 +1,43 @@
 package xom.test;
 import org.apache.commons.codec.EncoderException;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Set;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class App 
 {
     public static void main( String[] args ) throws EncoderException{
+        List<employee> employees = Arrays.asList(
+                new employee("SE","AMOOR", "012821105452"),
+                new employee("ST","AMR", "01282545252"),
+                new employee("SE","AMOORaaa", "01282425452")
+        );
+       HashMap <String,Integer> titles = new HashMap<>();
+            employees.stream().forEach(employee -> {
+                int employecount = 1;
+                if(!titles.containsKey(employee.getTitle())){
+                    titles.put(employee.getTitle(),employecount);
 
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        String Date = "20/10/2020";
-        Date obj_date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy") ;
-        try {
-            obj_date = formatter.parse(Date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Appointement appointement = new Appointement("amr",-25,"09","amrgmail.com","amoor",obj_date);
-        Set<ConstraintViolation<Appointement>> violations = validator.validate(appointement);
-        for (ConstraintViolation<Appointement> violation : violations) {
-          System.out.println(violation.getMessage());
+                }
+                else {
+                    int prev = titles.get(employee.getTitle());
+                    titles.put(employee.getTitle(), prev +employecount);
+                }
+            });
+            for (String Title :titles.keySet()){
+                if(titles.get(Title) == 1)
+                System.out.println("Special Title: " + Title + ":" +titles.get(Title));
+                else
+                    System.out.println("Title : " + Title + ":" + titles.get(Title));
+                employees.stream().filter(employee -> employee.getTitle().equals(Title)).forEach(employee -> {
+                    System.out.println("name : " + employee.getName());
+                    System.out.println("mobile :" + employee.getMobile());
+                });
+            }
+            ;
         }
     }
 
 
-}
+

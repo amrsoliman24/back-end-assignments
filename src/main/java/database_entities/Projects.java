@@ -8,7 +8,9 @@ public class Projects {
     @Id
     @Column(name = "_id")
     private long ID;
+    @Column(name = "name")
     private String name ;
+    @Column(name = "start_date")
     private Date StartingDate;
     @ManyToOne
     @JoinColumn(name = "project_manager")
@@ -55,5 +57,16 @@ public class Projects {
 
     public void setStartingDate(Date startingDate) {
         StartingDate = startingDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Projects{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", StartingDate=" + StartingDate +
+                ", PM=" + PM +
+                ", enrolledemployees=" + enrolledemployees +
+                '}';
     }
 }

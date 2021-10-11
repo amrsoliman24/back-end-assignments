@@ -17,7 +17,8 @@ public class Employees {
     private String phone ;
     @Column(name = "national_id")
     private String ssn ;
-
+    @Column(name = "age")
+    private int age ;
     @OneToMany(mappedBy = "PM")
     List<Projects> manaagedprojects ;
 
@@ -36,13 +37,14 @@ public class Employees {
 
 
 public Employees(){};
-    public  Employees( String name , String email , String Phone , String ssn , role role) {
+    public  Employees( String name , String email , String Phone , String ssn , role role , int age) {
 
         this.name = name;
         this.email = email;
         this.phone = Phone;
         this.ssn = ssn ;
         this.role = role ;
+        this.age = age;
     }
     public long getId() {
         return Id;
@@ -104,6 +106,14 @@ public Employees(){};
         this.enrolledprojects = enrolledprojects;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "employees{" +
@@ -112,6 +122,7 @@ public Employees(){};
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
                 ", ssn=" + ssn +
+                ", age=" + age +
                 ", role='" + role + '\'' +
                 '}';
     }

@@ -17,6 +17,7 @@ public class App
         getEntityManager();
         queryForEmployees();
         queryemployeeofproject();
+        saveemployetoproject();
     }
 
     public static EntityManager getEntityManager(){

@@ -1,6 +1,4 @@
-package entities;
-
-import entities.Employees;
+package database_entities;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,8 +16,8 @@ public class Projects {
     @JoinColumn(name = "project_manager")
     private Employees PM ;
 
-    @ManyToMany(mappedBy = "enrolledprojects")
-     private List<Employees> enrolledemployees ;
+    @ManyToMany
+    List<Employees> enrolledemployees ;
 
     public String getName() {
         return name;
@@ -41,6 +39,14 @@ public class Projects {
         return PM;
     }
 
+    public void setEnrolledemployees(List<Employees> enrolledemployees) {
+        this.enrolledemployees = enrolledemployees;
+    }
+
+    public List<Employees> getEnrolledemployees() {
+        return enrolledemployees;
+    }
+
     public void setPM(Employees PM) {
         this.PM = PM;
     }
@@ -51,14 +57,6 @@ public class Projects {
 
     public void setStartingDate(Date startingDate) {
         StartingDate = startingDate;
-    }
-
-    public List<Employees> getEnrolledemployees() {
-        return enrolledemployees;
-    }
-
-    public void setEnrolledemployees(List<Employees> enrolledemployees) {
-        this.enrolledemployees = enrolledemployees;
     }
 
     @Override

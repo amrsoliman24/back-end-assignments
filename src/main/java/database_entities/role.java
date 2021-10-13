@@ -1,6 +1,4 @@
-package entities;
-
-import entities.Employees;
+package database_entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

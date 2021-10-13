@@ -1,4 +1,4 @@
-package entities;
+package database_entities;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,10 +24,9 @@ public class Employees {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    private entities.role role ;
+    private role role ;
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "employees_projects",
             joinColumns = @JoinColumn(name = "employee_id"),
@@ -91,11 +90,11 @@ public Employees(){};
         this.ssn = ssn;
     }
 
-    public entities.role getRole() {
+    public database_entities.role getRole() {
         return role;
     }
 
-    public void setRole(entities.role role) {
+    public void setRole(database_entities.role role) {
         this.role = role;
     }
 

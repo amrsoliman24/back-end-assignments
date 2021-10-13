@@ -1,9 +1,0 @@
-Dtos\emloyeeprjDTo.class
-Dtos\Empserlaizer.class
-entities\Employees.class
-Services\Dataservice.class
-entities\role.class
-Controllers\DataAccessController.class
-database_entities\App.class
-entities\Projects.class
-Services\Dataserviceimp.class

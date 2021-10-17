@@ -3,7 +3,7 @@ package Dtos;
 import entities.Employees;
 
 public class Empserlaizer {
-    private  String name ;
+    private String name ;
     private String email ;
     private String phone ;
     private String ssn ;

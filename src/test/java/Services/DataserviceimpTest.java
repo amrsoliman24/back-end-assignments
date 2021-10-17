@@ -3,6 +3,7 @@ package Services;
 import Dtos.Empserlaizer;
 import entities.Employees;
 import entities.Projects;
+import entities.role;
 import Dtos.paginationDto;
 import javafx.scene.control.Pagination;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 
 import javax.persistence.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,22 +34,22 @@ class DataserviceimpTest {
     @InjectMocks
     private Dataserviceimp Dataserviceimp = new Dataserviceimp()  ;
     private Empserlaizer employee = new Empserlaizer("test user","test@test.net","012552","4554533",23,"software engineer");
-
     Employees getemployee(){
-        Employees e = new Employees();
-        e.setId(5);
-        e.setName("Amr");
-        e.setAge(22);
-        e.setEmail("amoor@gmail.com");
-        e.setPhone("01258666");
-
-        return e ;
-
+        Employees employee = new Employees();
+        employee.setId(5);
+        employee.setName("Amr");
+        employee.setAge(22);
+        employee.setEmail("amoor@gmail.com");
+        employee.setPhone("01258666");
+        employee.setEnrolledprojects(new ArrayList<Projects>());
+        return employee ;
     }
     Projects getproject(){
-        Projects p = new Projects();
-        p.setID(2);
-        p.setName("amr's project");
+
+        Projects  p = new Projects();
+
+        p.setID(1);
+        p.setName("amr");
         return p;
     }
 
@@ -91,18 +93,22 @@ class DataserviceimpTest {
     @Test
     void saveemployetoproject() {
 
-        Employees e = getemployee();
-        Projects p =  getproject();
-        Query query = mock(Query.class);
-        when(Entitymanager.createQuery("select e  from employees e where e.id = ?1 ")).thenReturn(query);
-        when(query.getSingleResult()).thenReturn(e);
-        when(Entitymanager.createQuery("select p  from projects p where p.ID = ?1 ")).thenReturn(query);
-        when(query.getSingleResult()).thenReturn(p);
+        Employees  dummyEmployee = getemployee();
+        Projects dummyproject =  getproject();
+        Query Empquery = mock(Query.class);
+        Query pquery = mock(Query.class);
+        when(Entitymanager.createQuery("select e  from employees e where e.id = ?1 ")).thenReturn(Empquery);
+        when(Empquery.setParameter(Mockito.anyInt(),Mockito.anyString())).thenReturn(Empquery);
+        when(Empquery.getSingleResult()).thenReturn(dummyEmployee);
+        when(Entitymanager.createQuery("select p  from projects p where p.ID = ?1 ")).thenReturn(pquery);
+        when(pquery.setParameter(Mockito.anyInt(),Mockito.anyString())).thenReturn(pquery);
+        when(pquery.getSingleResult()).thenReturn(dummyproject);
+
         EntityTransaction transaction = Mockito.mock(EntityTransaction.class);
         when(Entitymanager.getTransaction()).thenReturn(transaction);
-        doNothing().when(transaction).begin();
-        assertEquals(e.getEnrolledprojects().add(Mockito.any()),true);
 
+        assertEquals(Dataserviceimp.saveemployetoproject(dummyEmployee.getId() ,dummyproject.getID()),true);
+        assertEquals(dummyEmployee.getEnrolledprojects().add(dummyproject),true);
 
     }
 

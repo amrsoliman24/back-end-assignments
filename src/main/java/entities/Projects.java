@@ -4,6 +4,7 @@ import entities.Employees;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 @Entity(name = "projects")
 public class Projects {
@@ -20,6 +21,16 @@ public class Projects {
 
     @ManyToMany(mappedBy = "enrolledprojects")
      private List<Employees> enrolledemployees ;
+
+    public Projects() {
+    }
+
+    public Projects(String name, Date startingDate, Employees PM) {
+        this.name = name;
+        StartingDate = startingDate;
+        this.PM = PM;
+        this.enrolledemployees = new ArrayList<Employees>();
+    }
 
     public String getName() {
         return name;

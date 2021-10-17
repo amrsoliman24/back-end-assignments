@@ -3,6 +3,7 @@ package Controllers;
 import Dtos.Empserlaizer;
 import Services.Dataservice;
 import Services.Dataserviceimp;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,9 +25,14 @@ class  DataAccessControllerTest {
     DataAccessController DAC = new DataAccessController()  ;
     private Empserlaizer employee = new Empserlaizer("test user","test@test.net","012552","4554533",23,"software engineer");
 
+    @BeforeEach
+    public void Mocksinit() {
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     void queryformployees() {
-        MockitoAnnotations.initMocks(this);
+
         List<Empserlaizer> employeeList = new ArrayList<>();
         employeeList.add(employee);
         when(DS.queryForEmployees()).thenReturn(employeeList);
@@ -35,7 +41,7 @@ class  DataAccessControllerTest {
     }
     @Test
     void queryforEmproject() {
-        MockitoAnnotations.initMocks(this);
+
         List<Empserlaizer> employeeList = new ArrayList<>();
         employeeList.add(employee);
         when(DS.queryemployeeofproject("HRSD")).thenReturn(employeeList);
@@ -51,7 +57,7 @@ class  DataAccessControllerTest {
     @Test
     void addEmptoproject() {
 
-        MockitoAnnotations.initMocks(this);
+
         when(DS.saveemployetoproject(1L,1L)).thenReturn(false);
         Response r = DAC.addEmptoproject(1L,1L);
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode() , r.getStatus());
@@ -66,6 +72,11 @@ class  DataAccessControllerTest {
     @Test
     void pagingemployees() {
 
+        List<Empserlaizer> employeeList = new ArrayList<>();
+        employeeList.add(employee);
+        when(DS.pagingEmployees(Mockito.any())).thenReturn(employeeList);
+        Response r = DAC.pagingemployees(Mockito.any());
+        assertEquals(Response.Status.OK.getStatusCode() , r.getStatus());
 
 
 

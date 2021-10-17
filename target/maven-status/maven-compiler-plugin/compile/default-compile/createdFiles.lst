@@ -2,6 +2,7 @@ Dtos\emloyeeprjDTo.class
 Dtos\Empserlaizer.class
 entities\Employees.class
 Services\Dataservice.class
+Dtos\paginationDto.class
 entities\role.class
 Controllers\DataAccessController.class
 database_entities\App.class

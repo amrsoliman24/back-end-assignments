@@ -10,7 +10,15 @@ public class Empserlaizer {
     private int age ;
     private String rolename  ;
 
-    public Empserlaizer(){};
+    public Empserlaizer(String name , String email,String Phone ,String ssn , int age ,String rolename){
+        this.age = age;
+        this.email =email;
+        this.phone = Phone;
+        this.ssn = ssn;
+        this.rolename =rolename;
+        this.name = name;
+
+    };
     public Empserlaizer(Employees Employee){
         this.name = Employee.getName();
         this.email = Employee.getEmail();

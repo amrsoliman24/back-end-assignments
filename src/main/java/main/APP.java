@@ -14,7 +14,7 @@ import javax.xml.ws.ServiceMode;
 @EnableJpaRepositories(basePackages="reposotories")
 @EntityScan("entities")
 @SpringBootApplication
-@ComponentScan(basePackages={"services" , "main","controllers"})
+@ComponentScan(basePackages={"services" , "main","controllers","security"})
 public class APP {
     public static void main(String [] args)
     {

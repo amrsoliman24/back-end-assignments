@@ -1,19 +1,15 @@
 package services;
 
-import Dtos.GnereDto;
 import entities.ImproperFlagging;
 import entities.Movies;
 import entities.user;
-import main.JwtManager;
+import security.JwtManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import reposotories.Movierepo;
 
-import reposotories.GnereRepo;
 import reposotories.userRepo;
 
-import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Service

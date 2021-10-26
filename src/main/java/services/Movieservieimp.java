@@ -4,7 +4,7 @@ import Dtos.GnereDto;
 import Dtos.MovieDto;
 import Dtos.MovieDtoList;
 import entities.*;
-import main.JwtManager;
+import security.JwtManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

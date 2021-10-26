@@ -1,7 +1,8 @@
-package main;
+package controllers;
 
 
 import Dtos.AuthenticationDto;
+import security.JwtManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

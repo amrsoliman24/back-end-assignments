@@ -60,7 +60,7 @@ public class Movieservieimp implements Movieservice{
                     movieDto.getGenre_ids().forEach(gnere -> {
                         Optional<Gnere> genre = gnereRepo.findById(gnere);
                         if (genre.isPresent()) {
-                            MovieGenere movieGenere = new MovieGenere(genre.get());
+                            Gnere movieGenere = genre.get();
                             movie.addgnere(movieGenere);
                         }
 

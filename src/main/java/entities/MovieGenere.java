@@ -7,31 +7,37 @@ import javax.persistence.*;
 /*@Table(name = "movie_generes", indexes = {
         @Index(name = "genere_id", columnList = "genere_id")
 })*/
-@Entity(name = "movie_generes")
+
 public class MovieGenere {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+  /*  @EmbeddedId
+    MovieGenreId id = new MovieGenreId();
     @JsonIgnore
     @ManyToOne
+    @MapsId("movieId")
     @JoinColumn(name = "movie_id")
     private Movies movie;
     @JsonIgnore
     @ManyToOne
+    @MapsId("genereId")
     @JoinColumn(name = "genere_id")
     private Gnere gnere;
 
     public MovieGenere(){
 
     }
+
+    public MovieGenere(Integer gnere_id ,Long movie_id) {
+        this.id = new MovieGenreId(gnere_id,movie_id);
+
+    }
+
     public MovieGenere(Gnere gnere){
         this.gnere = gnere;
 
     }
 
 
-    public Integer getId() {
+    public MovieGenreId getId() {
         return id;
     }
 
@@ -51,7 +57,7 @@ public class MovieGenere {
         this.gnere = gnere;
     }
 
-    public void setId(Integer id) {
+    public void setId(MovieGenreId id) {
         this.id = id;
-    }
+    }*/
 }

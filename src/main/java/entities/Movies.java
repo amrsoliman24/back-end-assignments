@@ -7,10 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "movies")
 public class Movies {
@@ -41,13 +38,17 @@ public class Movies {
     private Set<MoviesRating> usersRating  ;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.PERSIST)
     private Set<ImproperFlagging> userImproperflaging ;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private Set<MovieGenere> Generes  ;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "movie_generes",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genere_id")
+    )
+    private Set<Gnere> gneres =  new HashSet<>()  ;
 
 
     public Movies() {
@@ -64,10 +65,8 @@ public class Movies {
         this.userImproperflaging.add(ImproperFlag);
         return true ;
     }
-    public boolean addgnere(MovieGenere movieGenere) {
-        movieGenere.setMovie(this);
-        this.Generes = new HashSet<>();
-        this.Generes.add(movieGenere);
+    public boolean addgnere (Gnere movieGenere) {
+        this.gneres.add(movieGenere);
         return true ;
     }
 
@@ -153,12 +152,12 @@ public class Movies {
         this.releaseDate = releaseDate;
     }
 
-    public Set<MovieGenere> getGeneres() {
-        return Generes;
+    public Set<Gnere> getGeneres() {
+        return this.gneres;
     }
 
-    public void setGeneres(Set<MovieGenere> generes) {
-        Generes = generes;
+    public void setGeneres(Set<Gnere> generes) {
+        this.gneres = generes;
     }
 
     public Set<MoviesRating> getUsersRating() {

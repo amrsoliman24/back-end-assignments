@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Set;
 
 public interface GnereRepo extends CrudRepository<Gnere,Integer> {
-    @Query("select G.movie from entities.MovieGenere G where G.gnere.id = ?1 ")
-    List<Movies> movieslistbyid(Integer id);
+    @Query("select G.Movies from entities.Gnere G where G.id = ?1 ")
+    Set<Movies> movieslistbyid(Integer id);
 
 
 

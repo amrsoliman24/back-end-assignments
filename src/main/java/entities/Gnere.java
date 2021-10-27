@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity(name = "gneres")
@@ -20,9 +18,9 @@ public class Gnere  {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "gnere", cascade = CascadeType.ALL)
-    private Set<MovieGenere> Movies = new HashSet<>();
+
+    @OneToMany(mappedBy = "gneres", fetch = FetchType.EAGER)
+     Set<Movies> Movies = new HashSet<>();
 
 
     public String getName() {
@@ -41,11 +39,11 @@ public class Gnere  {
         this.id = id;
     }
 
-    public Set<MovieGenere> getMovies() {
+    public Set<entities.Movies> getMovies() {
         return Movies;
     }
 
-    public void setMovies(Set<MovieGenere> movies) {
+    public void setMovies(Set<entities.Movies> movies) {
         Movies = movies;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import services.ImproperMovieService;
 
 @RestController
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     ImproperMovieService improperMovieService;
@@ -18,5 +19,6 @@ public class AdminController {
             return new ResponseEntity("movie has been marked Improper", HttpStatus.OK) ;
         return new ResponseEntity("movie is not found " , HttpStatus.NOT_FOUND) ;
     }
+
 
 }

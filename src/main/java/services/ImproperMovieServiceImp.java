@@ -50,7 +50,8 @@ public class ImproperMovieServiceImp implements ImproperMovieService{
     public boolean markMovieImproper(Long movieid) {
         Movies movie =  getmovie(movieid);
         movie.setImproper(true);
-        movierepo.save(movie);
+       movierepo.save(movie);
+
         return true;
 
     }

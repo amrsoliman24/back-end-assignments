@@ -38,8 +38,8 @@ public class Movies {
     private Set<MoviesRating> usersRating  ;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.PERSIST)
-    private Set<ImproperFlagging> userImproperflaging ;
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<ImproperFlagging> userImproperflaging  ;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -61,7 +61,7 @@ public class Movies {
     }
     public boolean adduserImproprateflag(ImproperFlagging ImproperFlag) {
         ImproperFlag.setMovie(this);
-        this.usersRating = new HashSet<>();
+        this.userImproperflaging =new HashSet<>() ;
         this.userImproperflaging.add(ImproperFlag);
         return true ;
     }

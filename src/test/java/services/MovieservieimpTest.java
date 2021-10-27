@@ -31,7 +31,6 @@ class MovieservieimpTest {
     Movierepo movierepo;
     @Mock
     Set<ImproperFlagging> set;
-
     @Mock
     Stream<MoviesRating> stream;
     @Spy

@@ -26,6 +26,8 @@ public interface Movierepo extends PagingAndSortingRepository<Movies, Long> {
     Set<Gnere> getUserHighlyRatedMovies(Long id );
     @Query("select M  from entities.Movies M join M.gneres g where g.id = ?1 and M.rating > 7.0")
     Set<Movies> findBygneres(Integer id );
+    @Query("select IF.movie  from entities.ImproperFlagging IF")
+    Set<Movies> getflaggedmovies();
 
 
 

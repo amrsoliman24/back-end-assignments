@@ -30,6 +30,8 @@ GnereRepo gnereRepo;
 Movieservice movieservice;
 @Autowired
 RecommendationService recommendationService;
+
+
     @RequestMapping(value = "/allmovies" , method = RequestMethod.GET)
     public ResponseEntity<Movies> fetchAllMovies(@RequestParam(value = "page") int page , @RequestParam(value = "size") int size )  {
         if(movieservice.fetchMovies(page, size).size() == 0)
@@ -42,6 +44,7 @@ RecommendationService recommendationService;
             return new ResponseEntity("no movies has been added yet", HttpStatus.NOT_FOUND) ;
         return new ResponseEntity(movieservice.fetchTopMovies() , HttpStatus.OK) ;
     }
+
 
     }
 

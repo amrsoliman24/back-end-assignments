@@ -2,13 +2,15 @@ package entities;
 
 import javax.persistence.*;
 
-@Table(name = "improper_flagging", indexes = {
+/*@Table(name = "improper_flagging", indexes = {
         @Index(name = "user_id", columnList = "user_id"),
         @Index(name = "movie_id", columnList = "movie_id")
-})
-@Entity
+})*/
+@Entity(name = "improper_flagging")
 public class ImproperFlagging {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long id ;
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -17,11 +19,9 @@ public class ImproperFlagging {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private user user;
-   public ImproperFlagging(){
-
-   }
+   public ImproperFlagging(){}
     public ImproperFlagging(user user){
-    this.user = user ;
+    this.user = user;
     }
 
     public entities.user getUser() {

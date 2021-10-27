@@ -10,7 +10,9 @@ import reposotories.Movierepo;
 
 import reposotories.userRepo;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ImproperMovieServiceImp implements ImproperMovieService{
@@ -64,5 +66,9 @@ public class ImproperMovieServiceImp implements ImproperMovieService{
         
         return selectedmovie;
         
+    }
+    @Override
+    public Set<Movies> impropratemovies(){
+        return movierepo.getflaggedmovies();
     }
 }

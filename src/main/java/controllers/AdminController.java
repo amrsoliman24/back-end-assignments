@@ -19,6 +19,13 @@ public class AdminController {
             return new ResponseEntity("movie has been marked Improper", HttpStatus.OK) ;
         return new ResponseEntity("movie is not found " , HttpStatus.NOT_FOUND) ;
     }
+    @RequestMapping(value = "/impropervotedmovies" , method = RequestMethod.GET)
+    public ResponseEntity<Movies> fetchTopMovies()  {
+        if(improperMovieService.impropratemovies().size() == 0)
+            return new ResponseEntity("no movies has been added yet", HttpStatus.NOT_FOUND) ;
+        return new ResponseEntity(improperMovieService.impropratemovies() , HttpStatus.OK) ;
+    }
+
 
 
 }
